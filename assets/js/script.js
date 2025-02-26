@@ -1,17 +1,17 @@
-const textElement = document.getElementById("text");
-const text = "مهندس برمجيات ومطور ويب فرونت اند";
-let index = 0;
+const thumb = document.querySelector(".scrollbar-thumb");
+const percentageDisplay = document.querySelector(".scrollbar-percentage");
+const navbarHeight = document.querySelector(".navbar").offsetHeight; // ارتفاع الناف بار
 
-function typeWriter() {
-  if (index < text.length) {
-    textElement.textContent += text.charAt(index);
-    index++;
-    setTimeout(typeWriter, 300); // التحكم بسرعة الكتابة (كل 100 ملي ثانية)
-  } else {
-    index = 0;
-    textElement.textContent = "";
-    setTimeout(typeWriter, 500); // إعادة التأثير بعد فترة قصيرة
-  }
-}
+window.addEventListener("scroll", () => {
+  const scrollTop = window.scrollY;
+  const scrollHeight = document.body.scrollHeight - window.innerHeight;
+  const scrollPercentage = (scrollTop / scrollHeight) * 100;
 
-typeWriter();
+  // تحريك الشريط
+  const thumbPosition = (scrollTop / scrollHeight) * (window.innerHeight - 50);
+  thumb.style.top = `${thumbPosition}px`;
+
+  // تحريك النسبة المئوية مع الشريط وبدء حسابها بعد الـ Navbar
+  percentageDisplay.style.top = `${thumbPosition + navbarHeight}px`;
+  percentageDisplay.textContent = `${Math.round(scrollPercentage)}%`;
+});
