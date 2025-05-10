@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مدونتي الشخصية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="icon" href="./assets/img/blog_icone.png" type="image/x-icon" /> 
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Cairo", sans-serif;
+      background-color: #fdfdfd;
+      color: #333;
+      transition: background-color 0.3s, color 0.3s;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    #progressContainer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: rgba(0, 0, 0, 0.1);
+      z-index: 4000;
+    }
+    #progressBar {
+      height: 5px;
+      width: 0%;
+      background: linear-gradient(90deg, #6a0dad, #9b59b6);
+    }
+    header {
+      background: linear-gradient(135deg, #6a0dad, #9b59b6);
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+    }
+    nav {
+      background-color: #8e44ad;
+      position: sticky;
+      top: 5px; 
+      z-index: 3000;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      justify-content: center;
+    }
+    nav li {
+      margin: 0 1rem;
+    }
+    nav a {
+      display: block;
+      padding: 1rem;
+      color: #fff;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .featured-section {
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .slider {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    .slide {
+      min-width: 100%;
+      position: relative;
+    }
+    .slide img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: block;
+      border-radius: 8px;
+    }
+    .slide-caption {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+    .slider-controls {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      padding: 0 1rem;
+    }
+    .slider-control {
+      background: rgba(0, 0, 0, 0.4);
+      color: #fff;
+      border: none;
+      padding: 0.5rem;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+    .subscribe-section {
+      background: #f1f1f1;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .subscribe-section h2 {
+      margin-bottom: 1rem;
+      color: #6a0dad;
+    }
+    .subscribe-section input[type="email"] {
+      width: 80%;
+      max-width: 400px;
+      padding: 0.8rem 1rem;
+      border: 2px solid #6a0dad;
+      border-radius: 4px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .subscribe-section button {
+      padding: 0.8rem 1.5rem;
+      background: #6a0dad;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .subscribe-section button:hover {
+      background: #9b59b6;
+    }
+    .trending-section {
+      margin-bottom: 2rem;
+    }
+    .trending-section h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #6a0dad;
+    }
+    .trending-container {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      padding: 1rem;
+    }
+    .trending-card {
+      flex: 0 0 auto;
+      width: 300px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .trending-card:hover {
+      transform: scale(1.05);
+    }
+    .trending-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .trending-title {
+      padding: 0.5rem;
+      background: #fff;
+      text-align: center;
+      font-weight: bold;
+      color: #6a0dad;
+    }
+    .services-section {
+      margin-bottom: 2rem;
+      text-align: center;
+      padding: 2rem 1rem;
+      background: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .services-section h2 {
+      margin-bottom: 1rem;
+      color: #6a0dad;
+    }
+    .services-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    .service-card {
+      flex: 1 1 250px;
+      background: #fff;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+      cursor: default;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+    }
+    .service-card img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-bottom: 0.5rem;
+    }
+    .service-card h3 {
+      margin-bottom: 0.5rem;
+      color: #6a0dad;
+    }
+    .service-card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .search-bar {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .search-bar input {
+      width: 80%;
+      max-width: 500px;
+      padding: 0.8rem 1rem;
+      border: 2px solid #6a0dad;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .post-card {
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.3s;
+      position: relative;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .post-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .post-card:hover {
+      transform: translateY(-5px);
+    }
+    .post-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .post-content {
+      padding: 1rem;
+    }
+    .post-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #6a0dad;
+    }
+    .post-date {
+      font-size: 0.9rem;
+      color: #777;
+      margin-bottom: 1rem;
+    }
+    .post-excerpt {
+      font-size: 1rem;
+      color: #555;
+    }
+    .load-more {
+      display: block;
+      width: 200px;
+      margin: 2rem auto;
+      padding: 0.8rem 1.5rem;
+      background: #6a0dad;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .load-more:hover {
+      background: #9b59b6;
+    }
+    .testimonial-section {
+      margin: 2rem 0;
+      background: #f9f9f9;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .testimonial-section h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #6a0dad;
+    }
+    .testimonial-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .testimonial {
+      flex: 1 1 300px;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      font-style: italic;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .testimonial span {
+      display: block;
+      margin-top: 0.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+    
+    .latest-videos-section {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .latest-videos-section h2 {
+      margin-bottom: 1rem;
+      color: #6a0dad;
+    }
+    .videos-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .video-card {
+      position: relative;
+      width: 300px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
+    .video-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .video-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2rem;
+      color: #fff;
+      background: rgba(0,0,0,0.5);
+      padding: 0.5rem 0.8rem;
+      border-radius: 50%;
+    }
+    .video-title {
+      padding: 0.5rem;
+      background: #fff;
+      text-align: center;
+      font-weight: bold;
+      color: #6a0dad;
+    }
+    .upcoming-events-section {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .upcoming-events-section h2 {
+      margin-bottom: 1rem;
+      color: #6a0dad;
+    }
+    .events-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .event-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1rem;
+      width: 300px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    .event-date {
+      font-size: 0.9rem;
+      color: #777;
+      margin-bottom: 0.5rem;
+    }
+    .event-title {
+      font-size: 1.2rem;
+      color: #6a0dad;
+      margin-bottom: 0.5rem;
+    }
+    .event-description {
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .faq-section {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .faq-section h2 {
+      margin-bottom: 1rem;
+      color: #6a0dad;
+    }
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .faq-item {
+      border-bottom: 1px solid #ddd;
+      padding: 1rem 0;
+      cursor: pointer;
+    }
+    .faq-question {
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+    .faq-answer {
+      display: none;
+      color: #555;
+      font-size: 0.95rem;
+    }
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+    .blog-stats-section {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .blog-stats-section h2 {
+      margin-bottom: 1rem;
+      color: #6a0dad;
+    }
+    .stats-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .stat {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1rem;
+      width: 150px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .stat-number {
+      font-size: 2rem;
+      color: #6a0dad;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    .stat-label {
+      font-size: 1rem;
+      color: #555;
+    }
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      z-index: 5000;
+      animation: fadeIn 0.3s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .modal-content {
+      background: #fff;
+      border-radius: 8px;
+      max-width: 800px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      padding: 2rem;
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: #6a0dad;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    .share-section {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .share-section p {
+      margin: 0;
+      font-weight: bold;
+    }
+    .share-btn {
+      font-size: 1.5rem;
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+    .share-btn:hover {
+      transform: scale(1.1);
+    }
+    #likeButton {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: #e74c3c;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .dark-mode-toggle {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: #6a0dad;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      outline: none;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s;
+      z-index: 3000;
+    }
+    .dark-mode-toggle:hover {
+      background: #9b59b6;
+    }
+    #backToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #6a0dad;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 3000;
+      transition: background 0.3s;
+    }
+    #backToTop:hover {
+      background: #9b59b6;
+    }
+    .dark {
+      background-color: #222;
+      color: #ddd;
+    }
+    .dark header {
+      background: linear-gradient(135deg, #4b0082, #6a0dad);
+    }
+    .dark nav {
+      background-color: #4b0082;
+    }
+    .dark .post-card {
+      background: #333;
+      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+    }
+    .dark .post-title {
+      color: #bb86fc;
+    }
+    .dark .post-excerpt {
+      color: #ccc;
+    }
+    .dark .modal-content {
+      background: #333;
+      color: #ddd;
+    }
+    .dark .comments-section .comment {
+      background: #444;
+    }
+  </style>
+</head>
+<body>
+  <div id="progressContainer">
+    <div id="progressBar"></div>
+  </div>
+  <header>
+    <h1>مدونتي الشخصية</h1>
+    <p>مقالات احترافية بتصميم عصري وإضافات متقدمة</p>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="#">الرئيسية</a></li>
+      <li><a href="#">المدونة</a></li>
+      <li><a href="#">من أنا</a></li>
+      <li><a href="#">اتصل بي</a></li>
+    </ul>
+  </nav>
+  <div class="container">
+    <section class="featured-section">
+      <div class="slider" id="featuredSlider">
+        <div class="slide">
+          <img src="https://via.placeholder.com/1200x300?text=مقال+مميز+1" alt="مقال مميز 1" loading="lazy">
+          <div class="slide-caption">عنوان المقال المميز 1</div>
+        </div>
+        <div class="slide">
+          <img src="https://via.placeholder.com/1200x300?text=مقال+مميز+2" alt="مقال مميز 2" loading="lazy">
+          <div class="slide-caption">عنوان المقال المميز 2</div>
+        </div>
+        <div class="slide">
+          <img src="https://via.placeholder.com/1200x300?text=مقال+مميز+3" alt="مقال مميز 3" loading="lazy">
+          <div class="slide-caption">عنوان المقال المميز 3</div>
+        </div>
+      </div>
+      <div class="slider-controls">
+        <button class="slider-control" id="prevSlide">❮</button>
+        <button class="slider-control" id="nextSlide">❯</button>
+      </div>
+    </section>
+    <section class="subscribe-section">
+      <h2>اشترك في نشرتنا البريدية</h2>
+      <form id="subscribeForm">
+        <input type="email" id="subscriberEmail" placeholder="أدخل بريدك الإلكتروني" required>
+        <br>
+        <button type="submit">اشتراك</button>
+      </form>
+    </section>
+    <section class="trending-section">
+      <h2>المقالات الشائعة</h2>
+      <div class="trending-container">
+        <div class="trending-card" data-post-id="1">
+          <img src="https://via.placeholder.com/300x200?text=Trending+1" alt="Trending 1" loading="lazy">
+          <div class="trending-title">عنوان مقال شائع 1</div>
+        </div>
+        <div class="trending-card" data-post-id="2">
+          <img src="https://via.placeholder.com/300x200?text=Trending+2" alt="Trending 2" loading="lazy">
+          <div class="trending-title">عنوان مقال شائع 2</div>
+        </div>
+        <div class="trending-card" data-post-id="3">
+          <img src="https://via.placeholder.com/300x200?text=Trending+3" alt="Trending 3" loading="lazy">
+          <div class="trending-title">عنوان مقال شائع 3</div>
+        </div>
+      </div>
+    </section>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="ابحث في المقالات..." />
+    </div>
+    <section class="posts-grid" id="postsGrid">
+    </section>
+    <button class="load-more" id="loadMoreBtn">تحميل المزيد</button>
+    <section class="testimonial-section">
+      <h2>آراء القراء</h2>
+      <div class="testimonial-container">
+        <div class="testimonial">
+          <p>"هذه المدونة مميزة جدًا، أنصح الجميع بمتابعتها."</p>
+          <span>— أحمد</span>
+        </div>
+        <div class="testimonial">
+          <p>"محتوى رائع وتصميم عصري يلبي كل احتياجاتي."</p>
+          <span>— سارة</span>
+        </div>
+        <div class="testimonial">
+          <p>"أفضل مدونة شخصية على الإطلاق، استمروا في الإبداع!"</p>
+          <span>— محمد</span>
+        </div>
+      </div>
+    </section>
+    <section class="services-section">
+      <h2>خدماتنا</h2>
+      <div class="services-container">
+        <div class="service-card">
+          <img src="https://via.placeholder.com/80?text=💻" alt="تطوير الويب">
+          <h3>تطوير الويب</h3>
+          <p>تصميم وتطوير مواقع حديثة وسريعة.</p>
+        </div>
+        <div class="service-card">
+          <img src="https://via.placeholder.com/80?text=🎨" alt="تصميم واجهات المستخدم">
+          <h3>تصميم واجهات</h3>
+          <p>تصاميم عصرية وتجربة مستخدم ممتازة.</p>
+        </div>
+        <div class="service-card">
+          <img src="https://via.placeholder.com/80?text=🚀" alt="تحسين محركات البحث">
+          <h3>SEO</h3>
+          <p>رفع ترتيب موقعك في نتائج البحث.</p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="latest-videos-section">
+      <h2>أحدث الفيديوهات</h2>
+      <div class="videos-container">
+        <div class="video-card">
+          <img src="https://via.placeholder.com/300x200?text=Video+1" alt="Video 1" loading="lazy">
+          <div class="video-overlay">▶</div>
+          <div class="video-title">عنوان فيديو 1</div>
+        </div>
+        <div class="video-card">
+          <img src="https://via.placeholder.com/300x200?text=Video+2" alt="Video 2" loading="lazy">
+          <div class="video-overlay">▶</div>
+          <div class="video-title">عنوان فيديو 2</div>
+        </div>
+        <div class="video-card">
+          <img src="https://via.placeholder.com/300x200?text=Video+3" alt="Video 3" loading="lazy">
+          <div class="video-overlay">▶</div>
+          <div class="video-title">عنوان فيديو 3</div>
+        </div>
+      </div>
+    </section>
+    <section class="upcoming-events-section">
+      <h2>الأحداث القادمة</h2>
+      <div class="events-container">
+        <div class="event-card">
+          <div class="event-date">25 أبريل 2025</div>
+          <h3 class="event-title">حدث 1</h3>
+          <p class="event-description">تفاصيل الحدث الأول وبعض المعلومات المهمة.</p>
+        </div>
+        <div class="event-card">
+          <div class="event-date">30 أبريل 2025</div>
+          <h3 class="event-title">حدث 2</h3>
+          <p class="event-description">تفاصيل الحدث الثاني وبعض المعلومات المهمة.</p>
+        </div>
+        <div class="event-card">
+          <div class="event-date">5 مايو 2025</div>
+          <h3 class="event-title">حدث 3</h3>
+          <p class="event-description">تفاصيل الحدث الثالث وبعض المعلومات المهمة.</p>
+        </div>
+      </div>
+    </section>
+    <section class="faq-section">
+      <h2>الأسئلة الشائعة</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question">ما هي خدمات المدونة؟</div>
+          <div class="faq-answer">نقدم خدمات تطوير وتصميم المواقع، تحسين محركات البحث وغيرها.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">كيف يمكنني الاشتراك في النشرة البريدية؟</div>
+          <div class="faq-answer">يمكنك الاشتراك عبر تعبئة بريدك الإلكتروني في قسم الاشتراك.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">هل تقدمون استشارات مجانية؟</div>
+          <div class="faq-answer">نعم، يمكنك طلب استشارة مجانية من خلال صفحة اتصل بي.</div>
+        </div>
+      </div>
+    </section>
+    <section class="blog-stats-section">
+      <h2>إحصائيات المدونة</h2>
+      <div class="stats-container">
+        <div class="stat">
+          <div class="stat-number" data-target="150">0</div>
+          <div class="stat-label">مقالات</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number" data-target="1200">0</div>
+          <div class="stat-label">مشتركين</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number" data-target="300">0</div>
+          <div class="stat-label">تعليقات</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number" data-target="500">0</div>
+          <div class="stat-label">إعجابات</div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="modal" id="modal">
+    <div class="modal-content" id="modalContent">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <div id="modalBody">
+      </div>
+    </div>
+  </div>
+  <button class="dark-mode-toggle" id="darkModeToggle">🌙</button>
+  <button id="backToTop">↑</button>
+  <script>
+    const posts = [
+      {
+        id: 1,
+        title: "عنوان المقال الأول",
+        date: "20 مارس 2025",
+        excerpt: "هذا ملخص المقال الأول الذي يقدم نبذة عن محتواه بطريقة تشويقية...",
+        content: "<p>هذه هي التفاصيل الكاملة للمقال الأول. يمكن إضافة فقرات، صور، وروابط لجعل المحتوى أكثر تفاعلية وإفادة.</p>",
+        image: "https://via.placeholder.com/600x400?text=Post+1",
+        likes: 0,
+      },
+      {
+        id: 2,
+        title: "عنوان المقال الثاني",
+        date: "19 مارس 2025",
+        excerpt: "ملخص المقال الثاني مع لمحة عن الأفكار والنقاط الرئيسية...",
+        content: "<p>في هذا المقال يتم شرح موضوع مهم بتفاصيل دقيقة وتحليل معمق.</p>",
+        image: "https://via.placeholder.com/600x400?text=Post+2",
+        likes: 0,
+      },
+      {
+        id: 3,
+        title: "عنوان المقال الثالث",
+        date: "18 مارس 2025",
+        excerpt: "نبذة مختصرة تشجع القارئ على معرفة المزيد حول المقال...",
+        content: "<p>يحتوي المقال الثالث على تحليلات وآراء متعددة حول موضوع الساعة.</p>",
+        image: "https://via.placeholder.com/600x400?text=Post+3",
+        likes: 0,
+      },
+      {
+        id: 4,
+        title: "عنوان المقال الرابع",
+        date: "17 مارس 2025",
+        excerpt: "مقدمة قصيرة للمقال الرابع مع إبراز الأفكار الأساسية...",
+        content: "<p>المقال الرابع يقدم نصائح وإرشادات عملية للمهتمين بالتكنولوجيا والتطوير الشخصي.</p>",
+        image: "https://via.placeholder.com/600x400?text=Post+4",
+        likes: 0,
+      },
+    ];
+    
+    let postsLoaded = 0;
+    const postsPerLoad = 2;
+    const postsGrid = document.getElementById("postsGrid");
+    const loadMoreBtn = document.getElementById("loadMoreBtn");
+    const modal = document.getElementById("modal");
+    const modalBody = document.getElementById("modalBody");
+    const modalClose = document.getElementById("modalClose");
+    const searchInput = document.getElementById("searchInput");
+    const darkModeToggle = document.getElementById("darkModeToggle");
+    const backToTop = document.getElementById("backToTop");
+    const progressBar = document.getElementById("progressBar");
+    
+    const commentsData = {};
+    
+    function renderPosts(postsArray) {
+      postsGrid.innerHTML = "";
+      postsArray.forEach((post) => {
+        const card = document.createElement("div");
+        card.className = "post-card";
+        card.innerHTML = `
+          <img src="${post.image}" alt="${post.title}" class="post-image" loading="lazy">
+          <div class="post-content">
+            <h2 class="post-title">${post.title}</h2>
+            <div class="post-date">${post.date}</div>
+            <p class="post-excerpt">${post.excerpt}</p>
+          </div>
+        `;
+        card.addEventListener("click", () => openModal(post));
+        postsGrid.appendChild(card);
+        observeCard(card);
+      });
+    }
+    
+    function loadPosts() {
+      const nextPosts = posts.slice(postsLoaded, postsLoaded + postsPerLoad);
+      nextPosts.forEach((post) => {
+        const card = document.createElement("div");
+        card.className = "post-card";
+        card.innerHTML = `
+          <img src="${post.image}" alt="${post.title}" class="post-image" loading="lazy">
+          <div class="post-content">
+            <h2 class="post-title">${post.title}</h2>
+            <div class="post-date">${post.date}</div>
+            <p class="post-excerpt">${post.excerpt}</p>
+          </div>
+        `;
+        card.addEventListener("click", () => openModal(post));
+        postsGrid.appendChild(card);
+        observeCard(card);
+      });
+      postsLoaded += postsPerLoad;
+      if (postsLoaded >= posts.length) {
+        loadMoreBtn.style.display = "none";
+      }
+    }
+    
+    function openModal(post) {
+      if (!commentsData[post.id]) {
+        commentsData[post.id] = [];
+      }
+      modalBody.innerHTML = `
+        <h2>${post.title}</h2>
+        <div class="post-date">${post.date}</div>
+        <img src="${post.image}" alt="${post.title}" style="width:100%; margin:1rem 0; border-radius:8px;" loading="lazy">
+        <div>${post.content}</div>
+        <button id="likeButton">❤️ ${post.likes} إعجاب</button>
+        <div class="share-section">
+          <p>شارك:</p>
+          <span class="share-btn" onclick="sharePost('facebook', ${post.id}); return false;">📘</span>
+          <span class="share-btn" onclick="sharePost('twitter', ${post.id}); return false;">🐦</span>
+          <span class="share-btn" onclick="sharePost('linkedin', ${post.id}); return false;">💼</span>
+          <span class="share-btn" onclick="copyLink(${post.id}); return false;">🔗</span>
+        </div>
+        <div class="comments-section">
+          <h3>تعليقات</h3>
+          <div id="commentsList">
+            ${commentsData[post.id].map(c => `<div class="comment"><span>${c.name}:</span> ${c.text}</div>`).join('')}
+          </div>
+          <form id="commentForm">
+            <input type="text" id="commentName" placeholder="اسمك" required style="width: 100%; margin-bottom: 0.5rem; padding: 0.5rem;">
+            <textarea id="commentText" placeholder="اكتب تعليقك" required style="width: 100%; margin-bottom: 0.5rem; padding: 0.5rem;"></textarea>
+            <button type="submit" style="padding: 0.5rem 1rem; background: #6a0dad; color: #fff; border: none; border-radius: 4px;">إرسال</button>
+          </form>
+        </div>
+      `;
+      modal.style.display = "flex";
+      document.body.style.overflow = "hidden";
+    
+      const likeButton = document.getElementById("likeButton");
+      likeButton.addEventListener("click", function () {
+        post.likes++;
+        likeButton.textContent = `❤️ ${post.likes} إعجاب`;
+      });
+    
+      const commentForm = document.getElementById("commentForm");
+      commentForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+        const nameInput = document.getElementById("commentName");
+        const textInput = document.getElementById("commentText");
+        const comment = {
+          name: nameInput.value,
+          text: textInput.value,
+        };
+        commentsData[post.id].push(comment);
+        const commentsList = document.getElementById("commentsList");
+        commentsList.innerHTML += `<div class="comment"><span>${comment.name}:</span> ${comment.text}</div>`;
+        nameInput.value = "";
+        textInput.value = "";
+      });
+    }
+    
+    function closeModal() {
+      modal.style.display = "none";
+      document.body.style.overflow = "";
+    }
+    
+    modalClose.addEventListener("click", closeModal);
+    window.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+    
+    loadMoreBtn.addEventListener("click", loadPosts);
+    document.addEventListener("DOMContentLoaded", () => {
+      loadPosts();
+      document.querySelectorAll(".trending-card").forEach(card => {
+        card.addEventListener("click", function() {
+          const postId = card.getAttribute("data-post-id");
+          const post = posts.find(p => p.id == postId);
+          if (post) {
+            openModal(post);
+          }
+        });
+      });
+    });
+    
+    searchInput.addEventListener("input", function () {
+      const query = searchInput.value.toLowerCase();
+      if (query.trim() !== "") {
+        const filteredPosts = posts.filter(
+          (post) =>
+            post.title.toLowerCase().includes(query) ||
+            post.excerpt.toLowerCase().includes(query)
+        );
+        renderPosts(filteredPosts);
+        loadMoreBtn.style.display = "none";
+      } else {
+        postsLoaded = 0;
+        postsGrid.innerHTML = "";
+        loadMoreBtn.style.display = "block";
+        loadPosts();
+      }
+    });
+    
+    darkModeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      darkModeToggle.textContent = document.body.classList.contains("dark")
+        ? "☀️"
+        : "🌙";
+    });
+    
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        backToTop.style.display = "flex";
+      } else {
+        backToTop.style.display = "none";
+      }
+      updateProgressBar();
+    });
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+    
+    function updateProgressBar() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.body.scrollHeight - window.innerHeight;
+      const scrolled = (scrollTop / docHeight) * 100;
+      progressBar.style.width = scrolled + "%";
+    }
+    
+    function sharePost(platform, postId) {
+      const post = posts.find((p) => p.id === postId);
+      const postUrl = location.href + "#post" + postId;
+      let shareUrl = "";
+      const text = encodeURIComponent(post.title);
+      if (platform === "facebook") {
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`;
+      } else if (platform === "twitter") {
+        shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(postUrl)}&text=${text}`;
+      } else if (platform === "linkedin") {
+        shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(postUrl)}&title=${text}`;
+      }
+      window.open(shareUrl, "_blank", "width=600,height=400");
+    }
+    window.sharePost = sharePost;
+    
+    function copyLink(postId) {
+      const postUrl = location.href + "#post" + postId;
+      navigator.clipboard.writeText(postUrl).then(() => {
+        alert("تم نسخ الرابط!");
+      });
+    }
+    window.copyLink = copyLink;
+    
+    function observeCard(card) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      observer.observe(card);
+    }
+    
+    const slider = document.getElementById("featuredSlider");
+    const slides = slider.querySelectorAll(".slide");
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+    const prevSlideBtn = document.getElementById("prevSlide");
+    const nextSlideBtn = document.getElementById("nextSlide");
+    
+    function showSlide(index) {
+      if (index < 0) index = totalSlides - 1;
+      if (index >= totalSlides) index = 0;
+      slider.style.transform = `translateX(-${index * 100}%)`;
+      currentSlide = index;
+    }
+    
+    prevSlideBtn.addEventListener("click", () => {
+      showSlide(currentSlide - 1);
+    });
+    
+    nextSlideBtn.addEventListener("click", () => {
+      showSlide(currentSlide + 1);
+    });
+    
+    setInterval(() => {
+      showSlide(currentSlide + 1);
+    }, 5000);
+    
+    const subscribeForm = document.getElementById("subscribeForm");
+    subscribeForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const email = document.getElementById("subscriberEmail").value;
+      alert(`تم الاشتراك بالبريد: ${email}`);
+      subscribeForm.reset();
+    });
+    
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+    });
+    
+    const statsSection = document.querySelector('.blog-stats-section');
+    const statNumbers = document.querySelectorAll('.stat-number');
+    let statsAnimated = false;
+    function animateStats() {
+      statNumbers.forEach(stat => {
+        const target = +stat.getAttribute('data-target');
+        let count = 0;
+        const increment = target / 200; 
+        const updateCount = () => {
+          count += increment;
+          if(count < target) {
+            stat.textContent = Math.floor(count);
+            requestAnimationFrame(updateCount);
+          } else {
+            stat.textContent = target;
+          }
+        };
+        updateCount();
+      });
+    }
+    const statsObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting && !statsAnimated) {
+          animateStats();
+          statsAnimated = true;
+        }
+      });
+    }, { threshold: 0.5 });
+    if(statsSection) {
+      statsObserver.observe(statsSection);
+    }
+  </script>
+</body>
+</html>

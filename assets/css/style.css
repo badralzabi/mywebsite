@@ -1,0 +1,763 @@
+body{
+  font-family: 'Cairo', sans-serif;
+    background-color: #0d1b2a;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+
+
+
+/* تنسيق الناف بار */
+
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #0d1b2a;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  padding: 15px 0;
+  z-index: 1000;
+}
+
+.navbar-brand{
+  font-size: 2em;
+    font-weight: 700;
+    color: #00d4ff;
+}
+.navbar-brand:hover{
+    color: #00d4ff;
+}
+
+.nav-link{
+  color:white;
+  text-align: center;
+  margin-left: 30px;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+
+.blogg{
+  background-color: rgb(0, 102, 255);
+  color:white;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.nav-link:hover{
+  background-color: rgb(0, 102, 255);
+  color:white;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+
+
+.info{
+  display: flex;
+  flex-direction: row;
+justify-content: center;
+
+}
+
+.info1{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.info1 h5{
+  color: rgb(0, 212, 255);
+    font-size: 2.5em;
+    position: relative;
+    margin-top: 140px;
+    margin-bottom: -20px;
+}
+
+
+
+.info1 button{
+  color:white;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  margin-left: 260px;
+  transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  background-color: #00aaff;
+  box-shadow: 0 10px 20px rgba(0, 212, 255, 0.2);
+}
+
+.info1 button:hover{
+
+  background-color: #0772a8;
+  box-shadow: 0 10px 20px rgba(0, 212, 255, 0.2);
+
+    transform: scale(1.05);
+}
+
+
+.card2h{
+  color: rgb(0, 212, 255);
+    font-size: 2.5em;
+    position: relative;
+    margin-top: 120px;
+    margin-bottom: 40px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.card2hr{
+  width: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -28px;
+  border: solid 2px rgb(0, 212, 255);
+}
+
+.cardd{
+  background-color: rgb(27, 38, 59);
+  height: 280px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 50px;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+} 
+
+.cardd:hover{
+  transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 212, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+  .cardd {
+    height: 240px; 
+  }
+}
+
+.cardd h4{
+  text-align: center;
+  font-size: large;
+}
+
+.cardd p{
+  color:rgb(176, 176, 176);
+  margin-top: 20px;
+  text-align: center;
+}
+
+.cardd a{
+  text-decoration: none;
+  color:white;
+}
+
+.cardd button {
+  display: block;
+  align-items: center;
+  background-color: #00d4ff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cardd button:hover{
+  background-color: #00aaff;
+    transform: scale(1.05);
+}
+
+.butcardd{
+  margin-top: 65px;
+}
+
+
+@media (max-width: 768px) {
+  .butcardd {
+margin-top: 10px;  
+ }
+}
+
+
+/* قسم مشاريعي */
+
+.hhp2{
+  color: rgb(0, 212, 255);
+    font-size: 2.5em;
+    position: relative;
+    margin-top: 120px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+.ppp2{
+  color: rgb(0, 212, 255);
+  font-size: 1.5em;
+  position: relative;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.cardd2{
+  background-color: rgb(27, 38, 59);
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  padding: 13px;
+  margin-bottom: 50px;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+
+.cardd2:hover{
+  transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 212, 255, 0.2);
+}
+
+.img1{
+  width: 100%;
+  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+}
+
+.img1:hover{
+  opacity: 90%;
+
+}
+
+.cardd2 h3{
+  text-align: center;
+  font-size: large;
+  margin-top: 40px;
+}
+
+.cardd2 p{
+  color:rgb(162, 202, 222);
+  margin-top: 20px;
+  text-align: center;
+}
+
+
+.cardd2 button{
+  display: inline-flex;
+  align-items: center;
+  background-color: #00aaff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cardd2 button:hover{
+  background-color: #00d4ff;
+  transform: scale(1.05);
+}
+
+
+
+/* تنسيق قسم التطبيقات */
+
+.card3h{
+  color: rgb(0, 212, 255);
+  font-size: 2em;
+  position: relative;
+  margin-top: 120px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.card3h1{
+  color: rgb(97, 180, 196);
+  font-size: 1em;
+  position: relative;
+  margin-bottom: 40px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.card4{
+  background-color: rgb(27, 38, 59);
+  border-radius: 10px;
+  height: 450px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  padding: 13px;
+  margin-bottom: 50px;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+} 
+
+.card4:hover{
+  transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 212, 255, 0.2);
+}
+
+
+@media (max-width: 768px) {
+  .card4 {
+    height: 500px; 
+  }
+}
+.card4 h4{
+  text-align: center;
+  margin-top: 40px;
+}
+
+.card4 p{
+  text-align: center;
+  margin-top: 20px;
+}
+
+.card4 button{
+  background-color: #00aaff;
+  color: #fff;
+  padding: 10px ;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.card4 button:hover{
+  background-color: #00d4ff;
+  transform: scale(1.05);
+}
+
+/* تنسيق الفورم */
+
+
+.hform{
+  text-align: center;
+  font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #00d4ff;
+    position: relative;
+    margin-top: 90px;
+}
+
+.oneform{
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.oneform input{
+  width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #00d4ff;
+    border-radius: 5px;
+    background-color: #1b263b;
+    color: white;
+    font-size: 1em;
+}
+
+.oneform textarea{
+  width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #00d4ff;
+    border-radius: 5px;
+    background-color: #1b263b;
+    color: white;
+    font-size: 1em;
+}
+
+.oneform button {
+  width: 20%;
+  background-color: #00d4ff;
+  color: #fff;
+  padding: 12px ;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+
+.oneform button:hover {
+  background-color: #00aaff;
+  transform: scale(1.05);
+}
+
+
+/* تنسيق الفوتر */
+
+footer {
+  background-color: #1b263b;
+  padding: 25px;
+  height: 200px;
+  text-align: center;
+  font-size: 0.9em;
+  color: #b0b0b0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 150px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.fotr h5{
+  margin-bottom: 9px;
+  font-size: x-large;
+}
+
+.fotr ul{
+  font-size: large;
+}
+
+.fotr li:hover{
+text-decoration:underline ;
+}
+
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 30px;
+  }
+
+
+}::selection{
+  background-color:  rgba(0, 212, 255, 0.2);
+  color:white;
+}
+
+/* شريط التمرير */
+
+
+.scrollbar {
+  position: fixed;
+  top: 0;
+  right: 10px;
+  width: 10px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.scrollbar-thumb {
+  width: 100%;
+  height:150px;
+  background: #3498db;
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  transition: top 0.2s ease-out;
+  -webkit-transition: top 0.2s ease-out;
+  -moz-transition: top 0.2s ease-out;
+  -ms-transition: top 0.2s ease-out;
+  -o-transition: top 0.2s ease-out;
+}
+
+
+/* تنسيق مدونتي */
+
+
+
+/* تنسيق صفحة شراء الخدمة */
+
+
+.sec0-buy{
+  height:735px;
+  background-color: #075a6a;
+  padding: 30px;
+}
+
+@media (max-width: 768px) {
+  .sec0-buy {
+   height: 938px;
+  }
+}
+.buaa{
+  margin-top: 200px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.buaa button{
+  background-color:#0772a8;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  padding: 8px;
+  box-shadow: 0 4px 8px rgba(25, 25, 103, 0.421);
+  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+}
+
+.buaa button:hover{
+  box-shadow: none;;
+}
+.sec0-buy h1{
+  text-align: center;
+  font-size: 3em;
+            text-align: center;
+            direction: rtl;
+            
+}
+
+.sec0-buy p{
+  text-align: center;
+  font-size: 2em;
+  text-align: center;
+ direction: rtl;
+ font-family: 'Arial', sans-serif;
+}
+
+
+
+.form-buy{
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 100px;
+}
+
+
+
+.form-buy input{
+   width: 100%;
+    margin-top: 9px;
+    padding: 10px;
+   border-radius:10px ;
+    -webkit-border-radius:10px ;
+     -moz-border-radius:10px ;
+      -ms-border-radius:10px ;
+       -o-border-radius:10px ;
+}
+
+
+.form-buy select{
+  width: 100%;
+   margin-top: 9px;
+   margin-bottom: 25px;
+   padding: 10px;
+  border-radius:10px ;
+   -webkit-border-radius:10px ;
+    -moz-border-radius:10px ;
+     -ms-border-radius:10px ;
+      -o-border-radius:10px ;
+}
+
+/* .form-buy option{
+  font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+}  */
+
+.form-buy textarea{
+  width: 100%;
+   margin-top: 9px;
+   padding: 10px;
+  border-radius:10px ;
+   -webkit-border-radius:10px ;
+    -moz-border-radius:10px ;
+     -ms-border-radius:10px ;
+      -o-border-radius:10px ;
+}
+
+.form-buy button{
+    align-items: center;
+    background-color: #089ab8;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: none;
+    transition: all 0.3s ease-in-out;
+    
+ 
+}
+
+.form-buy button:hover{
+  background-color: #058ca7;
+}
+
+
+
+
+/* تنسيق مدونتي في الصفحة الرئيسية */
+
+.bolhhh{
+  color: rgb(0, 212, 255);
+  font-size: 1.5em;
+  position: relative;
+  margin-top: 120px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.bolhh1{
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+
+.bolhh1:hover{
+  text-decoration: underline;
+}
+
+
+.bolhhp{
+  color: rgb(8, 181, 215);
+  font-size: 1em;
+  position: relative;
+  margin-bottom: 40px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.cardblo{
+  background-color: rgb(27, 38, 59);
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  padding: 13px;
+  margin-bottom: 50px;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+} 
+
+.cardblo:hover{
+  transform: translateY(-10px);
+    box-shadow: 0 2px 20px #9872cd;
+}
+
+
+@media (max-width: 768px) {
+  .cardblo {
+    height: 580px; 
+  }
+}
+
+.blog_img{
+  width: 100%;
+  transform: scale(1.2);
+}
+
+.cardblo h5{
+  text-align: center;
+  margin-top: 40px;
+  font-size: larger;
+}
+
+.cardblo p{
+  color:rgb(162, 202, 222);
+  margin-top: 20px;
+  text-align: center;
+}
+
+.cardblo button{
+  background-color: #9173ba;
+  color:white;
+  margin-left:auto ;
+  margin-right:auto ;
+  display: block;
+  border: none;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  padding: 6px;
+  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+}
+
+.cardblo button:hover{
+ background-color: #9872cd;
+ transform:translatey(-4px);
+ -webkit-transform:translatey(-4px);
+ -moz-transform:translatey(-4px);
+ -ms-transform:translatey(-4px);
+ -o-transform:translatey(-4px);
+}
+
+
+

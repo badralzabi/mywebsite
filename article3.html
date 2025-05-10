@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- بيانات SEO الأساسية -->
+  <meta name="description" content="مقال احترافي يحتوي على أحدث التقنيات والتحليلات المتعمقة في مجال التكنولوجيا.">
+  <meta name="keywords" content="مقال احترافي, تكنولوجيا, تحليل, مدونة, HTML, CSS, جافا سكريبت">
+  <meta name="author" content="اسم الكاتب">
+  <title>مقال احترافي - مدونة أفق التكنولوجيا</title>
+  <link rel="icon" href="./assets/img/blog_icone.png" type="image/x-icon" /> 
+
+  <!-- استدعاء خط Google "Cairo" -->
+  <link href="https://fonts.googleapis.com/css?family=Cairo:400,700&display=swap" rel="stylesheet">
+  <style>
+    /* إعادة تعيين الأنماط الأساسية */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Cairo', sans-serif;
+      line-height: 1.6;
+      background-color: #222831;
+      color: #EEEEEE;
+      padding-bottom: 60px;
+      scroll-behavior: smooth;
+    }
+    /* الوضع الفاتح */
+    body.light-mode {
+      background-color: #F5F5F5;
+      color: #333;
+    }
+    header, footer {
+      background-color: #393E46;
+      color: #00ADB5;
+      padding: 15px 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    body.light-mode header,
+    body.light-mode footer {
+      background-color: #fff;
+      color: #00ADB5;
+    }
+    /* شريط التنقل */
+    nav {
+      margin-top: 10px;
+      background-color: #222831;
+      padding: 10px 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      align-items: center;
+    }
+    nav ul li button {
+      background: none;
+      border: 2px solid #00ADB5;
+      color: #00ADB5;
+      padding: 8px 16px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+    nav ul li button:hover {
+      background-color: #00ADB5;
+      color: #393E46;
+      transform: scale(1.05);
+    }
+    /* تخطيط المحتوى الرئيسي والجانبي */
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    /* المحتوى الرئيسي */
+    .content {
+      flex: 3;
+      background: #393E46;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    body.light-mode .content {
+      background: #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    /* منطقة الشريط الجانبي */
+    .sidebar {
+      flex: 1;
+      background: #393E46;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      height: fit-content;
+    }
+    body.light-mode .sidebar {
+      background: #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .sidebar-section {
+      margin-bottom: 30px;
+    }
+    .sidebar-section h3 {
+      color: #00ADB5;
+      margin-bottom: 15px;
+    }
+    .sidebar-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar-section ul li {
+      margin-bottom: 10px;
+    }
+    .sidebar-section ul li a {
+      color: #EEEEEE;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    body.light-mode .sidebar-section ul li a {
+      color: #333;
+    }
+    .sidebar-section ul li a:hover {
+      color: #00ADB5;
+    }
+    /* كارد حكمة اليوم منفصلة */
+    .wisdom-card {
+      background: #393E46;
+      padding: 15px;
+      margin-bottom: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    body.light-mode .wisdom-card {
+      background: #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .wisdom-card h3 {
+      color: #00ADB5;
+      margin-bottom: 10px;
+    }
+    /* المحتوى الديناميكي داخل كارد حكمة اليوم */
+    .wisdom-content {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, opacity 0.5s ease;
+    }
+    .wisdom-content.open {
+      max-height: 300px; /* يمكن تعديل القيمة حسب حجم المحتوى */
+      opacity: 1;
+    }
+    .wisdom-content img {
+      max-width: 100%;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    .wisdom-content p {
+      font-style: italic;
+      margin: 0;
+      color: #EEEEEE;
+    }
+    body.light-mode .wisdom-content p {
+      color: #333;
+    }
+    /* زر التبديل داخل كارد حكمة اليوم */
+    #toggleWisdomBtn {
+      background-color: #00ADB5;
+      color: #393E46;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+      margin-bottom: 10px;
+    }
+    #toggleWisdomBtn:hover {
+      background-color: #00868C;
+      transform: scale(1.05);
+    }
+    /* تنسيق العناوين والفقرات داخل المحتوى الرئيسي */
+    h2 {
+      color: #00ADB5;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+    .post-meta {
+      font-size: 0.85em;
+      margin-bottom: 20px;
+      color: #CCCCCC;
+    }
+    p {
+      margin-bottom: 15px;
+      text-align: justify;
+      line-height: 1.8;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 15px;
+      border-radius: 8px;
+    }
+    figure {
+      margin: 15px 0;
+      text-align: center;
+    }
+    figcaption {
+      font-size: 0.9em;
+      margin-top: 5px;
+      color: #AAAAAA;
+    }
+    a {
+      color: #00ADB5;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    /* زر التمرير الديناميكي */
+    #scrollDynamicBtn {
+      position: fixed;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+      z-index: 99;
+      font-size: 18px;
+      border: none;
+      outline: none;
+      background-color: #00ADB5;
+      color: white;
+      cursor: pointer;
+      padding: 12px;
+      border-radius: 50%;
+      transition: background 0.3s, transform 0.3s;
+    }
+    #scrollDynamicBtn:hover {
+      background-color: #00868C;
+      transform: scale(1.1);
+    }
+    /* أزرار الشبكات الاجتماعية */
+    #socialIcons {
+      position: fixed;
+      top: 30%;
+      right: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 100;
+    }
+    #socialIcons a {
+      background-color: #00ADB5;
+      color: #393E46;
+      padding: 10px 14px;
+      border-radius: 4px 0 0 4px;
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s;
+      font-size: 14px;
+      text-align: center;
+      min-width: 80px;
+    }
+    #socialIcons a:hover {
+      background-color: #00868C;
+      color: white;
+    }
+    footer p {
+      text-align: center;
+      font-size: 0.9em;
+      color: #AAAAAA;
+    }
+    /* تحسين التوافق مع الأجهزة الصغيرة */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+      #socialIcons {
+        top: auto;
+        bottom: 80px;
+        right: 10px;
+        flex-direction: row;
+      }
+      #socialIcons a {
+        border-radius: 4px;
+        min-width: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- الرأس مع شريط التنقل -->
+  <header>
+    <h1>مدونة أفق التكنولوجيا</h1>
+    <nav>
+      <ul>
+        <li><button onclick="scrollToSection('home')">الرئيسية</button></li>
+        <li><button id="themeToggle">تبديل السمة</button></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <!-- تخطيط المحتوى الرئيسي والجانبي -->
+  <section id="home">
+    <div class="container">
+      <!-- المحتوى الرئيسي -->
+      <div class="content">
+        <article>
+          <h2>ثورة الذكاء الاصطناعي: التحول الرقمي وتحديات المستقبل</h2>
+          <p class="post-meta">نشر بتاريخ: 2025-02-27 | الكاتب: بدر الزعبي</p>
+          <p>
+            في ظل التطورات التكنولوجية المتلاحقة، يُعد الذكاء الاصطناعي حجر الزاوية في الابتكار الرقمي للقرن الواحد والعشرين. تجمع تقنيات الذكاء الاصطناعي بين خوارزميات تعلم الآلة والتعلم العميق ومعالجة اللغة الطبيعية والرؤية الحاسوبية، مما يمكّن الحواسيب من تحليل كميات هائلة من البيانات واستخلاص الأنماط الدقيقة. أثرت هذه التقنيات في مختلف القطاعات مثل الطب، والنقل، والتجارة الإلكترونية، وصناعة المحتوى، مما يفتح آفاقًا جديدة للتطوير والابتكار.
+          </p>
+          <figure>
+            <img src="https://via.placeholder.com/800x400" alt="صورة توضيحية للمقال">
+            <figcaption>صورة توضيحية تعكس محتوى المقال</figcaption>
+          </figure>
+          <h2>التطورات الحديثة في الذكاء الاصطناعي</h2>
+          <p>
+            شهدنا في السنوات الأخيرة تطورًا ملحوظًا في مجال تعلم الآلة، حيث أصبحت النماذج العميقة تُستخدم في مهام معقدة مثل الترجمة الفورية والتعرف على الوجوه وتحليل المشاعر في النصوص. ساهمت الشبكات العصبية التلافيفية في تحسين أداء الأنظمة البصرية، بينما لعبت النماذج القائمة على المحولات دورًا رئيسيًا في تعزيز قدرات معالجة اللغة الطبيعية. كما أدت تقنيات التعلم المعزز إلى تحسين القرارات في بيئات متغيرة، مما ساهم في تطوير السيارات ذاتية القيادة والأنظمة التفاعلية الذكية.
+          </p>
+          <h2>التحديات التقنية والعملية</h2>
+          <p>
+            على الرغم من النجاحات الكبيرة، يواجه الذكاء الاصطناعي عدة تحديات تقنية وأخلاقية. من الناحية التقنية، تبرز مسألة تفسير النماذج المعقدة؛ إذ يصعب في بعض الأحيان فهم كيفية وصول النظام إلى نتيجة معينة، مما يعوق الثقة في قراراته. كما أن الحاجة إلى كميات ضخمة من البيانات للتدريب تُعد عقبة رئيسية، خاصةً مع تزايد مخاوف الخصوصية وحماية البيانات الشخصية.
+          </p>
+          <h2>الفرص المستقبلية والابتكار</h2>
+          <p>
+            يعد مستقبل الذكاء الاصطناعي واعدًا بفضل الابتكارات المستمرة في مجال الحوسبة السحابية وإنترنت الأشياء، التي تتيح جمع بيانات في الوقت الحقيقي وتحليلها بدقة عالية. يتوقع الخبراء أن يُحدث الذكاء الاصطناعي تحولًا نوعيًا في الصناعات التقليدية من خلال تحسين الكفاءة التشغيلية وتقليل التكاليف، كما سيعزز من قدرات البحث العلمي في مجالات مثل الطب الجيني والتنبؤ بالكوارث الطبيعية. علاوة على ذلك، فإن التكامل بين الذكاء الاصطناعي والتقنيات الناشئة مثل الواقع الافتراضي والواقع المعزز سيوفر تجارب مستخدمين مبتكرة.
+          </p>
+          <p>
+            يمثل الذكاء الاصطناعي اليوم قوة دافعة لتغيير معالم الصناعة والاقتصاد العالمي، معزّزًا بقدرات تحليلية هائلة وإمكانيات مستقبلية غير محدودة. إلا أن النجاح في تطبيق هذه التقنيات يعتمد على تجاوز التحديات التقنية والأخلاقية المصاحبة لها، وتبني استراتيجيات واضحة لضمان الاستخدام الأمثل للبيانات والابتكار.
+          </p>
+        </article>
+      </div>
+      <!-- الشريط الجانبي -->
+      <aside class="sidebar">
+        <!-- قسم الأقسام -->
+        <div class="sidebar-section">
+          <h3>الأقسام</h3>
+          <ul>
+            <li><a href="#">تقنية</a></li>
+            <li><a href="#">أخبار</a></li>
+            <li><a href="#">تحليل</a></li>
+            <li><a href="#">تعليم</a></li>
+            <li><a href="#">نصائح</a></li>
+          </ul>
+        </div>
+        <!-- كارد منفصلة لحكمة اليوم -->
+       
+        <!-- قسم أحدث المقالات -->
+        <div class="sidebar-section">
+          <h3>أحدث المقالات</h3>
+          <ul>
+            <li><a href="#">مقال 1</a></li>
+            <li><a href="#">مقال 2</a></li>
+            <li><a href="#">مقال 3</a></li>
+          </ul>
+        </div>
+        <div class="wisdom-card">
+          <h3>حكمة اليوم</h3>
+          <button id="toggleWisdomBtn">عرض الحكمة</button>
+          <div class="wisdom-content" id="wisdomContent">
+            <img src="https://via.placeholder.com/300x150" alt="صورة حكمة اليوم">
+            <p>"الوقت كالسيف، إن لم تقطعه قطعك."</p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+  
+  <!-- أزرار الشبكات الاجتماعية -->
+  <div id="socialIcons">
+    <a href="https://instagram.com/bh.adr" target="_blank" title="Instagram">Instagram</a>
+    <a href="https://snapchat.com/bh.adr" target="_blank" title="Snapchat">Snapchat</a>
+  </div>
+  
+  <!-- زر التمرير الديناميكي -->
+  <button id="scrollDynamicBtn" title="انتقل">⬇️</button>
+  
+  <!-- التذييل -->
+  <footer>
+    <p>&copy; <span id="currentYear"></span> مدونة أفق التكنولوجيا. جميع الحقوق محفوظة.</p>
+  </footer>
+  
+  <script>
+    // تحديث السنة الحالية في التذييل
+    document.getElementById('currentYear').innerText = new Date().getFullYear();
+    
+    // دالة التنقل السلس لأقسام الصفحة
+    function scrollToSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    
+    // وظيفة تبديل السمة (الوضع المظلم / الفاتح)
+    const themeToggleBtn = document.getElementById('themeToggle');
+    themeToggleBtn.addEventListener('click', function() {
+      document.body.classList.toggle('light-mode');
+      themeToggleBtn.innerText = document.body.classList.contains('light-mode') ? "الوضع المظلم" : "الوضع الفاتح";
+    });
+    
+    // زر التمرير الديناميكي الذي يتغير بناءً على موقع الصفحة
+    const scrollDynamicBtn = document.getElementById('scrollDynamicBtn');
+    function updateScrollButton() {
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const halfway = scrollHeight / 2;
+      scrollDynamicBtn.innerText = scrollTop < halfway ? "⬇️" : "⬆️";
+    }
+    window.addEventListener('scroll', updateScrollButton);
+    updateScrollButton();
+    
+    scrollDynamicBtn.addEventListener('click', function(){
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const halfway = scrollHeight / 2;
+      if(scrollTop < halfway){
+         window.scrollTo({ top: scrollHeight, behavior: 'smooth' });
+      } else {
+         window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+    
+    // وظيفة تبديل عرض حكمة اليوم
+    const toggleWisdomBtn = document.getElementById('toggleWisdomBtn');
+    const wisdomContent = document.getElementById('wisdomContent');
+    toggleWisdomBtn.addEventListener('click', function(){
+      wisdomContent.classList.toggle('open');
+      toggleWisdomBtn.innerText = wisdomContent.classList.contains('open') ? "إخفاء الحكمة" : "عرض الحكمة";
+    });
+  </script>
+</body>
+</html>

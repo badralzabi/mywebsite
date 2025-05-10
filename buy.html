@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>شراء الخدمة</title>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4945397064302254"
+    crossorigin="anonymous"></script>
+    <link rel="icon" href="./assets/img/icone.png" type="image/x-icon" /> 
+    <script type="module" src="https://unpkg.com/@google/model-viewer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script src="https://unpkg.com/scrollreveal"></script>
+</head>
+
+
+<section class="sec0-buy">
+    <div class="buaa">
+        <div class="bua">
+    <h1 >اطلب خدمة</h1>
+    <p id="text"></p>
+</div>
+    <button ><a href="#formbuy" style="text-decoration: none; color:white;">أطلب خدمتك الآن</a></button>
+</div>
+</section>
+
+<section class="sec-buy">
+    
+    <form class="form-buy" id="formbuy">
+        <div class="input-buy">
+            <label>اسمك الثلاثي</label>
+<input type="text" name="full_name" required placeholder="الاسم">
+</div>
+
+<div class="input-buy">
+    <label>بريدك الإلكتروني</label>
+<input  type="email" name="email" required placeholder="البريد الإلكتروني">
+</div> 
+
+<div class="input-buy">
+    <label>رقم الهاتف ( اختياري )</label>
+<input type="tel" name="phone" placeholder="يجب أن يبدأ بـ رمز الدولة مثال: +962">
+</div> 
+
+<div class="input-buy">
+    <select name="service" required>
+        <option value="">اختر الخدمة</option>
+    <option value="تطوير وتصميم موقع الكتروني">تطوير وتصميم موقع الكتروني</option>
+    <option value="تعديل موقع الكتروني">تعديل موقع الكتروني</option>
+    <option value="حلول التجارة الالكترونية">حلول التجارة الالكترونية</option>
+    <option value="تطوير تطبيق موبايل">تطوير تطبيق موبايل</option>
+    <option value="استشارة مجانية">استشارة مجانية</option>
+    <option value="شيئ آخر">شيئ آخر</option>
+
+    </select>
+
+    <div class="input-buy">
+        <label>ملاحظات اظافية</label>
+    <textarea placeholder="ملاحظات اظافية"></textarea>
+    </div>
+
+</div> 
+<button type="submit">ارسل الطلب</button>
+    </form>
+
+
+    <script>
+        const textElement = document.getElementById("text");
+        const texts = [
+            "ثق تمامًا، ستحصل على أفضل خدمة!",
+            "نحن هنا لخدمتك بأفضل جودة!",
+            "خدماتنا مصممة لتلبية احتياجاتك!"
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeEffect() {
+            let currentText = texts[textIndex];
+
+            if (!isDeleting) {
+                textElement.innerHTML = currentText.substring(0, charIndex);
+                charIndex++;
+                if (charIndex > currentText.length) {
+                    isDeleting = true;
+                    setTimeout(typeEffect, 1); 
+                    return;
+                }
+            } else {
+                textElement.innerHTML = currentText.substring(0, charIndex);
+                charIndex--;
+                if (charIndex < 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % texts.length; // التبديل بين العبارات
+                }
+            }
+
+            setTimeout(typeEffect, isDeleting ? 50 : 110);
+        }
+
+        typeEffect();
+    </script>
+</section>
